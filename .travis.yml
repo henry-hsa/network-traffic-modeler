@@ -2,10 +2,13 @@ language: python
 os: linux
 dist: focal
 stages:
-  - test
+  - test_3.6
+  - test_3.7
+  - test_3.8
+  - test_pypy3
 jobs:
   include:
-    - stage: test
+    - stage: test_3.6
       language: python
       dist: focal
       python: 3.6
@@ -17,16 +20,7 @@ jobs:
       - pytest
       - black .
       after_success: coveralls
-      deploy:
-        provider: pypi
-        username: __token__
-        password: $PYPI_UPLOAD_TOKEN
-        distributions: sdist bdist_wheel
-        skip_existing: true
-        on:
-          tags: true
-          branch: master
-    - stage: test
+    - stage: test_3.7
       language: python
       dist: focal
       python: 3.7
@@ -38,16 +32,7 @@ jobs:
       - pytest
       - black .
       after_success: coveralls
-      deploy:
-        provider: pypi
-        username: __token__
-        password: $PYPI_UPLOAD_TOKEN
-        distributions: sdist bdist_wheel
-        skip_existing: true
-        on:
-          tags: true
-          branch: master
-    - stage: test
+    - stage: test_3.8
       language: python
       dist: focal
       python: 3.8
@@ -59,16 +44,7 @@ jobs:
       - pytest
       - black .
       after_success: coveralls
-      deploy:
-        provider: pypi
-        username: __token__
-        password: $PYPI_UPLOAD_TOKEN
-        distributions: sdist bdist_wheel
-        skip_existing: true
-        on:
-          tags: true
-          branch: master
-    - stage: test
+    - stage: test_pypy3
       language: python
       dist: focal
       python: pypy3
