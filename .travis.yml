@@ -2,13 +2,11 @@ language: python
 os: linux
 dist: focal
 stages:
-  - test_3.6
-  - test_3.7
-  - test_3.8
+  - test_python
   - test_pypy3
 jobs:
   include:
-    - stage: test_3.6
+    - stage: test_python
       language: python
       dist: focal
       python: 3.6
@@ -20,7 +18,7 @@ jobs:
       - pytest
       - black .
       after_success: coveralls
-    - stage: test_3.7
+    - stage: test_python
       language: python
       dist: focal
       python: 3.7
@@ -32,7 +30,7 @@ jobs:
       - pytest
       - black .
       after_success: coveralls
-    - stage: test_3.8
+    - stage: test_python
       language: python
       dist: focal
       python: 3.8
